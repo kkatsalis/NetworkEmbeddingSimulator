@@ -12,8 +12,16 @@ import java.util.List;
  *
  * @author kostas
  */
-public class HostStats {
+public class NodeStats {
    
+    double maxCpu;
+    double maxBandwidh;
+    double maxMemory;
+    
+    double currentCpuStats;
+    double currentMemoryStats;
+    double currentBandwidhStats;
+    
     String Hostname;
     String Time;
     String Arch;
@@ -33,7 +41,7 @@ public class HostStats {
     String Total_guest_memory_KB;
     List<NetRateStats> netRates;
 
-    public HostStats(){
+    public NodeStats(){
         
         netRates=new ArrayList<>();
         netRates.add(new NetRateStats("eth1"));

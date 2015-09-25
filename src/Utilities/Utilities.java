@@ -6,7 +6,7 @@
 package Utilities;
 
 import Controller.Configuration;
-import Controller.VMRequest;
+import Controller.NetworkRequest;
 import Enumerators.EServiceType;
 import Enumerators.ESlotDurationMetric;
 import Enumerators.EVMType;
@@ -57,7 +57,7 @@ public class Utilities {
       return service;
     }
  
-    public static Hashtable determineVMparameters(VMRequest vmRequest,String host) {
+    public static Hashtable determineVMparameters(NetworkRequest vmRequest,String host) {
     
         Hashtable parameters=new Hashtable();
     

@@ -20,8 +20,8 @@ public class Slot {
     long startTime;
     long endTime;
     Configuration _config;
-    List<VMRequest>[] _vmRequests2Activate;
-    List<VMRequest>[] _vmRequests2Remove;
+    List<NetworkRequest>[] _vmRequests2Activate;
+    List<NetworkRequest>[] _vmRequests2Remove;
     
     public Slot(int id,Configuration config){
     
@@ -51,11 +51,11 @@ public class Slot {
     }
 
    
-    public List<VMRequest>[] getVmRequests2Activate() {
+    public List<NetworkRequest>[] getVmRequests2Activate() {
         return _vmRequests2Activate;
     }
 
-    public List<VMRequest>[] getVmRequests2Remove() {
+    public List<NetworkRequest>[] getVmRequests2Remove() {
         return _vmRequests2Remove;
     }
 

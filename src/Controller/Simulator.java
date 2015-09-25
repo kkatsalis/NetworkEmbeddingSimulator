@@ -27,6 +27,11 @@ import java.util.logging.Logger;
  *
  * @author kostas
  */
+
+
+// Erdos Renyi graphs
+
+
 public class Simulator {
     /**
      * @param args the command line arguments
@@ -40,7 +45,7 @@ public class Simulator {
        List<String> _serviceNames;
        List<String> _vmTypesNames;
        
-       Host[] _hosts;
+       Node[] _hosts;
        WebClient[] _clients;
        Slot[] _slots;
        
@@ -69,7 +74,7 @@ public class Simulator {
            this._config=new Configuration(hostNames,clientNames,servicesNames,vmTypesNames);
            this._hostNames=hostNames;
     
-           this._hosts=new Host[hostNames.size()];
+           this._hosts=new Node[hostNames.size()];
            this._clients=new WebClient[clientNames.size()];
            
            this.requestIDs=new int[_config.getProvidersNumber()];
@@ -177,7 +182,7 @@ public class Simulator {
         private void initializeNodeObjects() {
         
             for (int i = 0; i < _hosts.length; i++) {
-                _hosts[i]=new Host(_config,_hostNames.get(i));
+                _hosts[i]=new Node(_config,_hostNames.get(i));
             }
             
             for (int i = 0; i < _clients.length; i++) {
@@ -213,7 +218,7 @@ public class Simulator {
                 
                 while(runningSlot<_config.getNumberOfSlots()){
                     
-                    runningSlot=CreateNewVMRequest(i,runningSlot);
+                    runningSlot=CreateNewNetworkRequest(i,runningSlot);
 
                 }
             }
@@ -221,7 +226,7 @@ public class Simulator {
         }
     
     //Returns the new running slot (this can be also 0)    
-    private int CreateNewVMRequest(int providerID,int currentSlot)
+    private int CreateNewNetworkRequest(int providerID,int currentSlot)
     {
         
         
@@ -238,7 +243,7 @@ public class Simulator {
         
         if(slot2AddVM<_config.getNumberOfSlots()){
             requestIDs[providerID]++;
-            VMRequest newRequest = new VMRequest(providerID,requestIDs[providerID],lifetime);
+            NetworkRequest newRequest = new NetworkRequest(providerID,requestIDs[providerID],lifetime);
 
             newRequest.setVmType(Utilities.determineVMType(providerID));
             newRequest.setService(Utilities.determineVMService(providerID));

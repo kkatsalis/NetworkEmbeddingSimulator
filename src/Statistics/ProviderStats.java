@@ -6,7 +6,7 @@
 package Statistics;
 
 import Controller.Configuration;
-import Controller.VMRequest;
+import Controller.NetworkRequest;
 import java.util.List;
 
 /**

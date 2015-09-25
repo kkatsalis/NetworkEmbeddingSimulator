@@ -9,7 +9,7 @@ import static Controller.Simulator.slot;
 import Enumerators.ESlotDurationMetric;
 import Utilities.WebUtilities;
 import Statistics.VMStats;
-import Statistics.HostStats;
+import Statistics.NodeStats;
 import Statistics.ProviderStats;
 import Utilities.Utilities;
 import java.io.IOException;
@@ -32,14 +32,14 @@ public class Controller {
     Configuration _config;
     Slot[] _slots;
             
-    Host[] _hosts;
+    Node[] _hosts;
     WebClient[] _clients;
     
    
     int _numberOfHosts=0;
     
     ProviderStats[] _providerStats;
-    HostStats[] _hostStats;
+    NodeStats[] _hostStats;
     List<VMStats> _activeVMStats;
     
     WebUtilities _webUtilities;
@@ -49,7 +49,7 @@ public class Controller {
     int _currentInstance=0; 
     int[][][][] allocationMatrix;
     
-    Controller(Host[] hosts,WebClient[] clients, Configuration config, Slot[] slots) {
+    Controller(Node[] hosts,WebClient[] clients, Configuration config, Slot[] slots) {
         
         this._config=config;
         this._slots=slots;
@@ -61,7 +61,7 @@ public class Controller {
         this._webUtilities=new WebUtilities(config);
        
         
-        this._hostStats=new HostStats[_numberOfHosts];
+        this._hostStats=new NodeStats[_numberOfHosts];
         this._activeVMStats=new ArrayList<>();
         this._maxControlInstances=_config.getStatsUpdatesPerSlot();
         
@@ -103,7 +103,7 @@ public class Controller {
 
      private void createVMs() throws IOException {
      
-        VMRequest request;
+        NetworkRequest request;
         
         for (int i = 0; i < _config.getProvidersNumber(); i++) {
             for (int j = 0; j < _slots[slot].getVmRequests2Activate()[i].size(); i++) {

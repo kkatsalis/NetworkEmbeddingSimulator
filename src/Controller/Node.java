@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Statistics.HostStats;
+import Statistics.NodeStats;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,24 +13,28 @@ import java.util.List;
  *
  * @author kostas
  */
-public class Host {
+public class Node {
 
+    int nodeID;
     Configuration _config;
     String _nodeName;
     
-    List<VM> _activeVMs;    // A list with VMs per Host Machine;
-    List<VM> _closedVMs;    // A list with VMs per Host Machine;
+    List<VM> _activeVMs;    // A list with VMs per Node Machine;
+    List<VM> _closedVMs;    // A list with VMs per Node Machine;
     
-    List<HostStats> _hostStats;
+    NodeStats _hostStats;
     
-    public Host(Configuration config,String nodeName) {
+    int[] neighborIDs;
+    int[] neighborEdgeWeights;
+    
+    public Node(Configuration config,String nodeName) {
         
         this._config=config;
         this._nodeName=nodeName;
         
-        this._activeVMs=new ArrayList<>();     // A list with VMs per Host Machine;
+        this._activeVMs=new ArrayList<>();     // A list with VMs per Node Machine;
         this._closedVMs=new ArrayList<>();
-        this._hostStats=new ArrayList<>();
+        this._hostStats=new NodeStats();
     }
 
     public String getNodeName() {

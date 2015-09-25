@@ -14,7 +14,7 @@ import java.util.Random;
  *
  * @author kostas
  */
-public class VMRequest {
+public class NetworkRequest {
     
     int providerID;
     int requestID=0;
@@ -25,7 +25,9 @@ public class VMRequest {
     String service;
     int lifetime;     //in Slots
    
-    public VMRequest(int providerID,int requestID, int lifetime) {
+    // Erdos Renyi graphs
+    
+    public NetworkRequest(int providerID,int requestID, int lifetime) {
         
         this.providerID = providerID;
         this.lifetime=lifetime;
